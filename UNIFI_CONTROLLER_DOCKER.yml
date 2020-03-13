@@ -1,7 +1,7 @@
 # UNIFI_CONTROLLER_DOCKER
 # Author> GERALDO LUCAS POLI 
 # BASED DOCUMENTATION  https://help.ubnt.com/hc/en-us/articles/220066768-UniFi-How-to-Install-and-Update-via-APT-on-Debian-or-Ubuntu
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 RUN apt-get update && apt-get install ca-certificates apt-transport-https wget -y
 RUN echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' |  tee /etc/apt/sources.list.d/100-ubnt-unifi.list
 RUN apt-get install gnupg2 -y
