@@ -1,19 +1,13 @@
 # UNIFI_CONTROLLER_DOCKER
 # Author> GERALDO LUCAS POLI 
 # BASED DOCUMENTATION  https://help.ubnt.com/hc/en-us/articles/220066768-UniFi-How-to-Install-and-Update-via-APT-on-Debian-or-Ubuntu
-FROM library/ubuntu:14.04
-RUN sudo apt update && sudo apt install ca-certificates apt-transport-https
-RUN echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' | sudo tee /etc/apt/sources.list.d/100-ubnt-unifi.list
-RUN wget -qO - https://www.mongodb.org/static/pgp/server-3.4.asc | sudo apt-key add -
-RUN echo "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
-RUN sudo apt update
-RUN apt update
-RUN apt update && sudo apt install unifi
+FROM ubuntu:14.04
+apt-get update && apt-get install ca-certificates apt-transport-https wget -y
+echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' |  tee /etc/apt/sources.list.d/100-ubnt-unifi.list
+apt-get install gnupg2 -y
+wget -qO - https://www.mongodb.org/static/pgp/server-3.4.asc | apt-key add -
+echo "deb https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" |  tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+wget -O /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg 
+apt-get update &&  apt-get install unifi -y
 EXPOSE 8080
 EXPOSE 8443
-
-
-
-
-
-
